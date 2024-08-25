@@ -1,0 +1,17 @@
+langchain
+langchain-openai
+langchain-community
+chromadb
+langchain-chroma
+langchainhub==0.1.15
+langchain-community
+# pypdf
+PyPDF2
+einops
+sentence-transformers
+openai-whisper
+streamlit==1.24.0
+PyYAML==6.0.2
+yt_dlp
+whisper
+# deeplake==3.3.2
