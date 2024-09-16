@@ -11,6 +11,7 @@ from config import Config
 
 doc_path = "document"
 
+
 # model_kwargs = {'device': 'cpu','trust_remote_code': True}
 # encode_kwargs = {'normalize_embeddings': False}
 
