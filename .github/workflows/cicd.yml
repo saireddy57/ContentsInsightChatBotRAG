@@ -22,6 +22,8 @@ jobs:
       
     - name: Build the Docker image
       run: docker build --build-arg OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} -t contentinsights-rag .
+    - name: Ceck the Existing docker images
+      run: docker images
     - name: Push to Docker HUB
       run: docker push saireddyml/contentinsights-rag:latest
       
