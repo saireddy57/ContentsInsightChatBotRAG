@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login to Docker HUB
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{SECRETS.DOCKER_PASSWORD}}
+      run : docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      
+    - name: Build the Docker image
+      run: docker build --build-arg OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} -t contentinsights-rag .
+    - name: Push to Docker HUB
+      run: docker push saireddyml/contentinsights-rag:latest
+      
+      
