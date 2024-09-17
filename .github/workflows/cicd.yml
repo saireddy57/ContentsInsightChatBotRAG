@@ -29,9 +29,9 @@ jobs:
     - name: Fetch tag of required images
       env: 
         tag: docker images -q saireddyml/chatbot20.0:latest
-
-    - name: Assigning the tag name to image
       run:  docker tag ${{tag}} saireddyml/contentinsights-rag:latest
+    # - name: Assigning the tag name to image
+      
     - name: Push to Docker HUB
       run: docker push saireddyml/contentinsights-rag:latest
       
