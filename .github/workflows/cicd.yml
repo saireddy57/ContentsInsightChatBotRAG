@@ -30,8 +30,9 @@ jobs:
       env: 
         tag: docker images -q saireddyml/chatbot20.0:latest
 
-    - name: Push to Docker HUB
+    - name: Assigning the tag name to image
       run:  docker tag ${{tag}} saireddyml/contentinsights-rag:latest
+    - name: Push to Docker HUB
       run: docker push saireddyml/contentinsights-rag:latest
       
       
