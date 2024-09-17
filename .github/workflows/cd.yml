@@ -1,0 +1,21 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflow: ["CI Pipeline"]
+    types:
+      - completed
+      
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Pull Docker image
+      run: sudo docker pull saireddyml/contentinsights-rag:latest
+    - name: Delete Old Docker container
+      run: sudo docker rm -f contentinsights-rag-container || true
+    - name: Run Docker Container
+      run: sudo docker run -d -p 8000:8000 --name contentinsights-rag-container saireddyml/contentinsights-rag

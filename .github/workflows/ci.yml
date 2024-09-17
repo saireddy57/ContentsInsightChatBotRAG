@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CI Pipeline
 
 on:
   push:
@@ -22,14 +22,14 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
     - name: Build the Docker image
-      run: docker build --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} -t saireddyml/chatbot20.0:latest .
+      run: docker build --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} -t saireddyml/contentinsights-rag:latest .
 
     - name: Check the existing Docker images
       run: docker images
 
-    - name: Get the Image ID for chatbot20.0:latest
+    - name: Get the Image ID for contentinsights-rag:latest
       id: image_id # stores output in a variable
-      run: echo "::set-output name=image_id::$(docker images -q saireddyml/chatbot20.0:latest)"
+      run: echo "::set-output name=image_id::$(docker images -q saireddyml/contentinsights-rag:latest)"
 
     - name: Tag the image with contentinsights-rag:latest
       run: docker tag ${{ steps.image_id.outputs.image_id }} saireddyml/contentinsights-rag:latest
