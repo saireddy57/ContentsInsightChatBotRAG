@@ -14,25 +14,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Login to Docker HUB
+
+    - name: Login to Docker Hub
       env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run : docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
     - name: Build the Docker image
-      run: docker build --build-arg OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} -t contentinsights-rag .
-    - name: Check the Existing docker images
+      run: docker build --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} -t saireddyml/chatbot20.0:latest .
+
+    - name: Check the existing Docker images
       run: docker images
-    - name: Latest tag name 
-      run: docker images -q saireddyml/chatbot20.0:latest
-    - name: Fetch tag of required images
-      env: 
-        TAG: docker images -q saireddyml/chatbot20.0:latest
-      run: docker tag $TAG saireddyml/contentinsights-rag:latest
-    # - name: Assigning the tag name to image
-      
-    - name: Push to Docker HUB
+
+    - name: Get the Image ID for chatbot20.0:latest
+      id: image_id # stores output in a variable
+      run: echo "::set-output name=image_id::$(docker images -q saireddyml/chatbot20.0:latest)"
+
+    - name: Tag the image with contentinsights-rag:latest
+      run: docker tag ${{ steps.image_id.outputs.image_id }} saireddyml/contentinsights-rag:latest
+
+    - name: Push to Docker Hub
       run: docker push saireddyml/contentinsights-rag:latest
-      
-      
