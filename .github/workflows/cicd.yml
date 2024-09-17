@@ -19,12 +19,17 @@ jobs:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run : docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      
+    
     - name: Build the Docker image
       run: docker build --build-arg OPENAI_API_KEY=${{secrets.OPENAI_API_KEY}} -t contentinsights-rag .
-    - name: Ceck the Existing docker images
+    - name: Check the Existing docker images
       run: docker images
+      run: docker images -q saireddyml/chatbot20.0:latest
+      env: 
+        tag: docker images -q saireddyml/chatbot20.0:latest
+
     - name: Push to Docker HUB
+      run:  docker tag ${{tag}} saireddyml/contentinsights-rag:latest
       run: docker push saireddyml/contentinsights-rag:latest
       
       
