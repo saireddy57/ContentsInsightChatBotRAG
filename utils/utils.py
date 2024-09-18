@@ -25,25 +25,20 @@ ffmpeg_path = "/snap/bin/ffmpeg"  # Replace this with the actual path to ffmpeg 
 with open("param.yaml") as stream:
     param_dict = yaml.safe_load(stream)
 
-print(param_dict)
-
 store = {}
 
 def load_doc(doc_path):
     loader =  PyPDFDirectoryLoader(doc_path)
     docs = loader.load()
-    print("doc_path-----------",len(docs))
     return docs
 
 def split_chunks(doc_obj):
     splitters = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=0)
     chunks = splitters.split_documents(doc_obj)
-    # print(chunks)
     return chunks
 
 def write_to_db(chunked_docs,file_name):
 
-    print("FILENAME---------------------------------------------",file_name)
     filename= re.sub('[^A-Za-z0-9]+', '', file_name)
     # db = DeepLake.from_documents(chunked_docs, dataset_path=f"./database/{filename}/", embedding=Config.model)
     db = Chroma.from_documents(documents=chunked_docs, collection_name=filename,
@@ -75,7 +70,6 @@ def create_qa_rag_chain(retriever):
     query = "Explain about PM Matsya Sampada Yojana ?"
     # query = "Explain about PM Matsya Sampada Yojana ?"
     result = qa_rag_chain.invoke(query)
-    print(result.content)
     return qa_rag_chain
 
 def create_chat_history_prompt():
@@ -116,9 +110,8 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
         store[session_id] = ChatMessageHistory()
     return store[session_id]
 
-    result = qa_rag_chain.invoke(query)
-    print(result.content)
-    return qa_rag_chain
+    # result = qa_rag_chain.invoke(query)
+    # return qa_rag_chain
 
 
 def download_audio(youtube_url, ffmpeg_path=''):
@@ -151,5 +144,5 @@ def process_ytb_video(yt_url):
     audio_file_path = download_audio(yt_url, ffmpeg_path)
     docobj = extract_text_from_audio(audio_file_path)
     # runner(is_video_img_content=True,doc_obj=docobj)
-    return {"status": "Success"} 
+    return {"status": "Success"} ,docobj
 
