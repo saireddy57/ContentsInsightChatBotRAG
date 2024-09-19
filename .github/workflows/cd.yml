@@ -14,8 +14,8 @@ jobs:
 
     steps:
     - name: Pull Docker image
-      run: sudo docker pull saireddyml/contentinsights-rag:latest
+      run:  docker pull saireddyml/contentinsights-rag:latest
     - name: Delete Old Docker container
-      run: sudo docker rm -f contentinsights-rag-container || true
+      run:  docker rm -f contentinsights-rag-container || true
     - name: Run Docker Container
-      run: sudo docker run -d -p 8000:8000 --name contentinsights-rag-container saireddyml/contentinsights-rag
+      run:  docker run -d -p 8000:8000 --name contentinsights-rag-container saireddyml/contentinsights-rag
