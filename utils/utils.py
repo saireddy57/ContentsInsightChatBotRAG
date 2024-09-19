@@ -19,7 +19,7 @@ from langchain.vectorstores import DeepLake
 import yaml
 from config import Config
 
-ffmpeg_path = "/snap/bin/ffmpeg"  # Replace this with the actual path to ffmpeg if not in PATH
+ffmpeg_path = "/usr/bin/ffmpeg"  # Replace this with the actual path to ffmpeg if not in PATH
 
 # param_dict = yaml.safe_load('param.yaml'
 with open("param.yaml") as stream:
