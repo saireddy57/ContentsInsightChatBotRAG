@@ -3,6 +3,7 @@ FROM python:3.10-slim
 ARG OPENAI_API_KEY
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 RUN apt-get update && apt-get install -y libgl1-mesa-glx
+RUN apt-get install ffmpeg
 COPY . /app
 WORKDIR /app
 # Upgrade pip
