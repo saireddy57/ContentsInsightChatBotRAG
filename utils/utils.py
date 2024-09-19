@@ -19,6 +19,9 @@ from langchain.vectorstores import DeepLake
 import yaml
 from config import Config
 
+import chromadb
+
+# ffmpeg_path = "/snap/bin/ffmpeg"
 ffmpeg_path = "/usr/bin/ffmpeg"  # Replace this with the actual path to ffmpeg if not in PATH
 
 # param_dict = yaml.safe_load('param.yaml'
@@ -41,12 +44,14 @@ def write_to_db(chunked_docs,file_name):
 
     filename= re.sub('[^A-Za-z0-9]+', '', file_name)
     # db = DeepLake.from_documents(chunked_docs, dataset_path=f"./database/{filename}/", embedding=Config.model)
-    db = Chroma.from_documents(documents=chunked_docs, collection_name=filename,
+    
+    db = Chroma.from_documents(documents=chunked_docs, collection_name=filename ,
                                         embedding=Config.model,
                                         # need to set the distance function to cosine else it uses euclidean by default
                                         # check https://docs.trychroma.com/guides#changing-the-distance-function
                                         collection_metadata={"hnsw:space": "cosine"},
-                                        persist_directory=None)
+                                        persist_directory="./{0}".format(filename),
+                                        client = chromadb.Client())
     return db
 
 def get_retriever(chroma_db):
