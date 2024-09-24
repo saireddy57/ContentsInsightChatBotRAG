@@ -1,7 +1,11 @@
 FROM python:3.10-slim
 # Set build-time variable
 ARG OPENAI_API_KEY
+ARG ACTIVELOOP_TOKEN
+
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV ACTIVELOOP_TOKEN=${ACTIVELOOP_TOKEN}
+
 RUN apt-get update && apt-get install -y libgl1-mesa-glx
 RUN apt-get install -y ffmpeg
 COPY . /app

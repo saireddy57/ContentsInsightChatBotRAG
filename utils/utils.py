@@ -15,13 +15,18 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 import yt_dlp
 from langchain.docstore.document import Document
 import re
-from langchain.vectorstores import DeepLake
+from langchain_community.vectorstores import DeepLake
 import yaml
 from config import Config
 
+from langchain.embeddings.openai import OpenAIEmbeddings
+
+
 import chromadb
 
+#My PC
 # ffmpeg_path = "/snap/bin/ffmpeg"
+#Docker
 ffmpeg_path = "/usr/bin/ffmpeg"  # Replace this with the actual path to ffmpeg if not in PATH
 
 # param_dict = yaml.safe_load('param.yaml'
@@ -43,20 +48,19 @@ def split_chunks(doc_obj):
 def write_to_db(chunked_docs,file_name):
 
     filename= re.sub('[^A-Za-z0-9]+', '', file_name)
-    # db = DeepLake.from_documents(chunked_docs, dataset_path=f"./database/{filename}/", embedding=Config.model)
+    db = DeepLake.from_documents(chunked_docs,embedding = OpenAIEmbeddings() , dataset_path=f"./database/{filename}/",overwrite=True )
     
-    db = Chroma.from_documents(documents=chunked_docs, collection_name=filename ,
-                                        embedding=Config.model,
-                                        # need to set the distance function to cosine else it uses euclidean by default
-                                        # check https://docs.trychroma.com/guides#changing-the-distance-function
-                                        collection_metadata={"hnsw:space": "cosine"},
-                                        persist_directory="./{0}".format(filename),
-                                        client = chromadb.Client())
+    # db = Chroma.from_documents(documents=chunked_docs, collection_name=filename ,
+    #                                     embedding=Config.model,
+    #                                      # need to set the distance function to cosine else it uses euclidean by default
+    #                                     # check https://docs.trychroma.com/guides#changing-the-distance-function
+    #                                     collection_metadata={"hnsw:space": "cosine"},
+    #                                     persist_directory="./{0}".format(filename),
+    #                                     client = chromadb.Client())
     return db
 
 def get_retriever(chroma_db):
-    similarity_retriever = chroma_db.as_retriever(search_type="similarity_score_threshold",
-                                                  search_kwargs={"k": 5, "score_threshold": 0.2})
+    similarity_retriever = chroma_db.as_retriever()
     return similarity_retriever
 
 def format_docs(docs):
