@@ -137,6 +137,8 @@ def download_audio(youtube_url, ffmpeg_path=''):
     if ffmpeg_path:
         ydl_opts['ffmpeg_location'] = ffmpeg_path
         ydl_opts['cookiefile'] =  "c6a0e3e1-6272-45c1-beea-500790cf1953.txt"
+        ydl_opts['user-agent'] =  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info_dict = ydl.extract_info(youtube_url, download=True)
