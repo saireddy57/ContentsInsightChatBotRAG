@@ -41,6 +41,7 @@ This repository hosts an advanced AI chatbot that processes PDF documents and vi
 2. Set Up API Keys: Create a .env file in the project root directory to store your API keys:
 
 OPENAI_API_KEY=<your-openai-api-key>
+
 ACTIVELOOP_TOKEN=<your-deeplake-api-key>
 
 3. Install Dependencies: Activate your Conda environment and install the required packages:
@@ -93,4 +94,5 @@ The project uses 'GitHub Actions' to automate building, testing, and deploying t
   'cd.yml': Automates deployment to your cloud environment.
 
 Make sure to configure your credentials and secrets in GitHub Actions for seamless cloud deployment.
+
 
