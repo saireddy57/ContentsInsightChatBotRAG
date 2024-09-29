@@ -15,6 +15,7 @@ WORKDIR /app
 # RUN sudo apt-get install libgl1-mesa-glx
 RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip3 install -r requirements.txt
+RUN pip3 install -U yt_dlp
 EXPOSE 8000
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 ENTRYPOINT ["streamlit", "run", "ui.py", "--server.port=8000", "--server.address=0.0.0.0"]
