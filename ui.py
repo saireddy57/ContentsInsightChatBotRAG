@@ -92,7 +92,8 @@ def handle_file_upload(uploaded_file):
         st.error("Invalid file type.")
 
 st.header('ContentInsightsRAG')
-st.header('Select Source')
+st.write(" ")
+st.subheader('Seamless Q&A on Documents and Videos with an AI Chatbot Built for Contextual Conversations and Followup chats')
 genre = st.radio("Select an Option", ["", "Text Files", "Video"])
 # st.session_state['session_id'] = 100
 is_video = False

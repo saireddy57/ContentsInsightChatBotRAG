@@ -25,9 +25,9 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 import chromadb
 
 #My PC
-# ffmpeg_path = "/snap/bin/ffmpeg"
+ffmpeg_path = "/snap/bin/ffmpeg"
 #Docker
-ffmpeg_path = "/usr/bin/ffmpeg"  # Replace this with the actual path to ffmpeg if not in PATH
+# ffmpeg_path = "/usr/bin/ffmpeg"  # Replace this with the actual path to ffmpeg if not in PATH
 
 # param_dict = yaml.safe_load('param.yaml'
 with open("param.yaml") as stream:
@@ -136,6 +136,7 @@ def download_audio(youtube_url, ffmpeg_path=''):
     
     if ffmpeg_path:
         ydl_opts['ffmpeg_location'] = ffmpeg_path
+        ydl_opts['cookiefile'] =  "c6a0e3e1-6272-45c1-beea-500790cf1953.txt"
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info_dict = ydl.extract_info(youtube_url, download=True)
