@@ -96,3 +96,15 @@ The project uses 'GitHub Actions' to automate building, testing, and deploying t
 Make sure to configure your credentials and secrets in GitHub Actions for seamless cloud deployment.
 
 
+
+### Videos
+
+#### PDF Chat
+
+https://github.com/user-attachments/assets/e0fcf140-b3c1-4157-97f3-7ffd053736c9
+
+#### Youtube Video Chat
+
+https://github.com/user-attachments/assets/028c575c-f814-4cc8-8737-a151789309ab
+
+
