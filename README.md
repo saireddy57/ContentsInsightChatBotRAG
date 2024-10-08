@@ -52,7 +52,6 @@ pip install -r requirements.txt
 
 streamlit run ui.py
 
-
 # Interacting with the Chatbot
 
 1. Upload PDF documents or paste a YouTube video URL.
@@ -69,9 +68,10 @@ The chatbot is production-ready and can be deployed to the cloud using Docker an
 
       1. Modify the .github/workflows/ci.yml and .github/workflows/cd.yml files to include your credentials.
       2. Store sensitive keys like OPENAI_API_KEY and ACTIVELOOP_TOKEN in GitHub Secrets.
-# Deploy on AWS or Other Cloud Services:
 
-      1. Set up a GitHub runner on an AWS EC2 instance or other cloud platforms. Once the pipeline runs successfully, use the provided DNS to access the chatbot.
+# Deploy on AWS or Other Cloud Services:
+      1. Select an Ubuntu 22.04 and create t3 large computation machine and 30 GB EBS.
+      2. Set up a GitHub runner on an AWS EC2 instance or other cloud platforms. Once the pipeline runs successfully, use the provided DNS with the server port to access the chatbot.
 
 # Docker Deployment
 
