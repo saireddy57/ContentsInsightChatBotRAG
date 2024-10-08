@@ -1,4 +1,5 @@
 # ContentsInsightChatBotRAG
+ContentsInsightChatBotRAG processes PDFs, videos to provide accurate, AI-driven Chatbot based on the analyzed content and Chat history.
 
 # AI-Powered Chatbot for PDF and Video Q&A
 
