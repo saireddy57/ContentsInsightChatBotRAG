@@ -20,11 +20,12 @@ This repository hosts an advanced AI chatbot that processes PDF documents and vi
 2. Streamlit: Used to create an interactive web interface for the chatbot.
 3. Langchain: Manages interactions between the chatbot and large language models.
 4. GPT-3.5-turbo API: Provides natural language understanding and generation for the chatbot.
-5. DeepLake Vector DB: Stores embeddings of processed content for fast retrieval and accurate answers.
-6. Prompt Engineering: Designed custom prompts for efficient interaction with the AI and handling chat history.
-7. Docker: Enables containerization for consistent deployments across different environments.
-8. GitHub Actions: Automates testing, building, and deployment processes.
-9. yt_dlp: Downloads and processes YouTube videos, making them searchable by the chatbot.
+5. Nomic AI Embedding for embedding generation.
+6. DeepLake Vector DB: Stores embeddings of processed content for fast retrieval and accurate answers.
+7. Prompt Engineering: Designed custom prompts for efficient interaction with the AI and handling chat history.
+8. Docker: Enables containerization for consistent deployments across different environments.
+9. GitHub Actions: Automates testing, building, and deployment processes.
+10. yt_dlp: Downloads and processes YouTube videos, making them searchable by the chatbot.
 
 # Running the Chatbot Locally
 
