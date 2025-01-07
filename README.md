@@ -39,7 +39,7 @@ This repository hosts an advanced AI chatbot that processes PDF documents and vi
 
     git clone https://github.com/saireddy57/ContentsInsightChatBotRAG.git
    
-    cd <repository-folder>
+    cd ContentsInsightChatBotRAG
 
 3. Set Up API Keys: Create a .env file in the project root directory to store your API keys:
 
