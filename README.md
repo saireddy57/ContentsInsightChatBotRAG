@@ -37,10 +37,11 @@ This repository hosts an advanced AI chatbot that processes PDF documents and vi
 # Steps
 1. Clone the Repository:
 
-    git clone <repository-url>
+    git clone https://github.com/saireddy57/ContentsInsightChatBotRAG.git
+   
     cd <repository-folder>
 
-2. Set Up API Keys: Create a .env file in the project root directory to store your API keys:
+3. Set Up API Keys: Create a .env file in the project root directory to store your API keys:
 
 OPENAI_API_KEY=<your-openai-api-key>
 
